@@ -13,7 +13,7 @@ const secrets = {
     SMTP_HOST: process.env.SMTP_HOST,
     PRIVATE_KEY: process.env.PRIVATE_KEY,
     RPC_URL: process.env.RPC_URL,
-    CONTRACT_ADDRESS: process.env.CONTRACT_ADDRESS||"0x7EF2e0048f5bAeDe046f6BF797943daF4ED8CB47",
+    CONTRACT_ADDRESS: process.env.CONTRACT_ADDRESS,
     GEMINI_API_KEY: process.env.GEMINI_API_KEY,
     PINATA_JWT: process.env.PINATA_JWT,
 };
