@@ -1,0 +1,16 @@
+[submodule "CarbonCreditsContract"]
+	path = CarbonCreditsContract
+	url = https://github.com/Somnath-Chattaraj/CarbonCreditsContract
+
+[submodule "CarbonCreditsNFT"]
+	path = CarbonCreditsNFT
+	url = https://github.com/tanish35/CarbonCredit-NFT
+[submodule "SmartContract/lib/forge-std"]
+	path = SmartContract/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "SmartContract/lib/openzeppelin-contracts"]
+	path = SmartContract/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "SmartContract/lib/chainlink-brownie-contracts"]
+	path = SmartContract/lib/chainlink-brownie-contracts
+	url = https://github.com/smartcontractkit/chainlink-brownie-contracts

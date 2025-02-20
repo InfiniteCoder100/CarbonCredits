@@ -1,0 +1,54 @@
+name: Hourly Update to index.ts
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs every 1 hour
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  update-blank-line:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+
+      - name: Debug Repository Structure
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Listing directory structure:"
+          ls -R
+          echo "Checking if the target file exists:"
+          ls -l backend/src/index.ts || echo "File not found!"
+
+      - name: Ensure commit every hour
+        run: |
+          FILE="backend/src/index.ts"
+          echo "Target file: $FILE"
+          if [ -f "$FILE" ]; then
+            echo "File found. Modifying it..."
+            # Modify the file by toggling an empty line at the end
+            if tail -n 1 "$FILE" | grep -q '^$'; then
+              echo "Removing blank line at the end."
+              sed -i '$d' "$FILE"
+            else
+              echo "Adding a blank line at the end."
+              echo "" >> "$FILE"
+            fi
+            git add "$FILE"
+          else
+            echo "Error: Target file does not exist."
+            exit 1
+          fi
+
+      - name: Commit and push changes
+        run: |
+          git commit -m "ci: hourly update to backend/src/index.ts"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
